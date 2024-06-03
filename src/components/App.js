@@ -4,10 +4,12 @@ import Main from "./Main.js";
 import api from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import { useState, useEffect } from "react";
+import Register from "./Register.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import ImagePopup from './ImagePopup.js'
+import Login from "./Login.js";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -97,7 +99,8 @@ function App() {
     <>
       <div className="page">
         <CurrentUserContext.Provider value={currentUser}>
-          <Header />
+          
+          {/*<Header />
           <Main
             onEditAvatarClick={handleEditAvatarClick}
             onEditProfileClick={handleEditProfileClick}
@@ -112,7 +115,9 @@ function App() {
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
             cards={cards}
-          />
+          /> */}
+          <Register/>
+          <Login/>
           <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closePopups}
