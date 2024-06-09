@@ -23,6 +23,8 @@
 @import url('./blocks/footer/__copyright/footer__copyright.css');
 @import url('./blocks/modal/modal.css');
 @import url('./blocks/modal/__opened/modal__opened.css');
+@import url('./blocks/modal/__content/modal__content.css');
+@import url('./blocks/modal/__content/_img/modal__content_img.css');
 @import url('./blocks/modal/__contain/modal__contain.css');
 @import url('./blocks/modal/__close-icon/modal__close-icon.css');
 @import url('./blocks/modal/__contain/-title/modal__contain-title.css');
