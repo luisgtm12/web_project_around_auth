@@ -15,7 +15,7 @@ function InfoTooltip ({name,title,isOpen,onClose}){
               <img src={correct}
                 className="modal__content_img"
                 />
-              <h4 className="modal__contain-title">{title}</h4>
+              <h4 className="modal__content-title">{title}</h4>
             </div>
             
           </div>

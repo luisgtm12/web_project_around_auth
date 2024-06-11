@@ -169,7 +169,7 @@ function App() {
       <InfoTooltip
                     isOpen={true}
                     name={"tooltip"}
-                    title={"Simon"}
+                    title={"¡Correcto! Ya estás registrado."}
                     
                     />
       <Footer />
