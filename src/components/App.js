@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
 import Main from "./Main.js";
@@ -13,7 +13,7 @@ import EditAvatarPopup from "./EditAvatarPopup.js";
 import ImagePopup from "./ImagePopup.js";
 import Login from "./Login.js";
 import ProtectedRoute from "./ProtectedRoute";
-import InfoTooltip from "./InfoTooltip.js";
+import *as auth from "../utils/auth"
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -22,8 +22,9 @@ function App() {
   const [selectCard, setSelectCard] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
-  const [isLogged, setIsLogged] = useState(true);
-
+  const [isLogged, setIsLogged] = useState(false);
+  const [emailUser, setEmailUser] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.getCards().then((cards) => {
@@ -36,6 +37,38 @@ function App() {
       setCurrentUser(res);
     });
   }, []);
+
+
+  useEffect(()=>{
+    if(localStorage.getItem('jwt')){
+      auth 
+        .getToken(localStorage.getItem('jwt'))
+        .then((data)=>{
+            if(data){
+              setIsLogged(true);
+              setEmailUser(data.email);
+              navigate('/')
+            } else{
+              navigate('/signup')
+              throw new Error('Token invalido')
+            }
+        })
+        .catch((error)=>{
+          console.log(error);
+          navigate('/signup')
+        })
+    }
+  },[isLogged, navigate]);
+
+  function signOff(){
+    localStorage.removeItem('jwt')
+    setEmailUser("")    
+  }
+
+  function handleLogin(){
+    setIsLogged(true)
+  }
+
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -118,7 +151,9 @@ function App() {
                   <>
                     <Header 
                       signText={"Cerrar sesión"}
-                      email={"luisgtm23@hotmail.com"}
+                      email={emailUser}
+                      onClick={signOff}
+                      linkRoute={'/signin'}
                     />
                     <Main
                       onEditAvatarClick={handleEditAvatarClick}
@@ -156,22 +191,31 @@ function App() {
                       isOpen={!!selectCard}
                       onclose={closePopups}
                     />
-                    
                   </>
                 }
               />
             </Route>
+            <Route
+              path="/signin"
+              element={
+                <>
+                  <Login
+                    isUserLogged={handleLogin}
+                  />
+                </>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <>
+                  <Register/>
+                </>
+              }
+              />
           </Routes>
-          {/* */}
-      
         </CurrentUserContext.Provider>
       </div>
-      <InfoTooltip
-                    isOpen={true}
-                    name={"tooltip"}
-                    title={"¡Correcto! Ya estás registrado."}
-                    
-                    />
       <Footer />
     </>
   );

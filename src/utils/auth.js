@@ -1,21 +1,21 @@
-const BASE_URL = 'https://register.nomoreparties.co';
+const base_url = 'https://tripleten.desarrollointerno.com';
 
 export const register = (email, password) => {
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${base_url}/signup`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       email,
-      password,
+      password
     }),
   })
     .then((res) => {
       if (res.ok) {
         return res.json();
-      }
-      return Promise.reject(res.status);
+      }else {
+      return Promise.reject(res.status);}
     })
     .catch((error) => {
       console.log(`Error: ${error}`);
@@ -23,7 +23,7 @@ export const register = (email, password) => {
 };
 
 export const authorize = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${base_url}/signin`, {
     method: 'POST',
 
     headers: {
@@ -49,7 +49,7 @@ export const authorize = (email, password) => {
 };
 
 export const getToken = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
+  return fetch(`${base_url}/users/me`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

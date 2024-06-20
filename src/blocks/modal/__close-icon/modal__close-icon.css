@@ -20,4 +20,9 @@
     width: 26px;
     height: 26px;
   }
+
+  .info-close{
+    right: 129px;
+    top: -50px;
+  }
 }

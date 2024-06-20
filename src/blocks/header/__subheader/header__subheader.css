@@ -6,4 +6,16 @@
   color: white;
   margin-left: 20px;
   margin-top: 10px;
+  text-decoration: none;
+}
+
+.header__subheader:hover{
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media screen and (max-width:320px) {
+	.header__subheader{
+    margin-left: 0;
+  }
 }

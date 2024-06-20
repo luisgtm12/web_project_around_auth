@@ -7,3 +7,8 @@
   font-size: 14px;
   line-height: 17px;
 }
+
+.user-form__link-span:hover{
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+}

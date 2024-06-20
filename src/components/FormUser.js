@@ -1,32 +1,41 @@
 import React from "react";
-//import {Link} from 'react-router-dom'
-function FormUser (
-  {title,email,password,buttonText,linkSpan,linkSpanText}
-){
-  return(
-    <form className="user-form">
+import {Link} from 'react-router-dom'
+function FormUser({
+  title,
+  buttonText,
+  linkSpan,
+  linkText,
+  onChange,
+  onSubmit,
+}) {
+  return (
+    <form className="user-form" onSubmit={onSubmit}>
       <h3 className="user-form__title">{title}</h3>
       <div className="user-form__container">
         <input
-        className="user-form__input"
-        type="email"
-        placeholder="Correo electronico"
-        required
-        value={email}
+          className="user-form__input"
+          type="email"
+          placeholder="Correo electronico"
+          name="email"
+          onChange={onChange}
+          required
         />
         <input
-        className="user-form__input"
-        type="password"
-        placeholder="Contraseña"
-        required
-        value={password}
+          className="user-form__input"
+          type="password"
+          placeholder="Contraseña"
+          name="password"
+          onChange={onChange}
+          required
         />
       </div>
-      <button className="user-form__button-submit" type="submit">{buttonText}</button>
-      <a to={linkSpan} className="user-form__link-span">
-        {linkSpanText}
-      </a>
+      <button className="user-form__button-submit" type="submit">
+        {buttonText}
+      </button>
+      <Link to={linkSpan} className="user-form__link-span">
+        {linkText}
+      </Link>
     </form>
-  )
+  );
 }
 export default FormUser;
