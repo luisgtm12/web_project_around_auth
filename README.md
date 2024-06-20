@@ -15,6 +15,9 @@ Alrededor de los Estados Unidos es un Update de nuestros Proyecto webproyect4, e
 - Metodo BEM
 - Css
 - Media Queries
+- uso Hooks de React
+- API
+- React Router
 
 ## Getting Started with Create React App
 
